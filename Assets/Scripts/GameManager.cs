@@ -66,11 +66,14 @@ public class gameManager : MonoBehaviour
         if(enemies.Count==0)
         {
             yield return new WaitForSeconds(turnDelay);
-            for(int i = 0; i < enemies.Count; i++)
-            {
-                enemies[i].MoveEnemy();
-                yield return new WaitForSeconds(enemies[i].moveTime);
-            }
+            
         }
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            enemies[i].MoveEnemy();
+            yield return new WaitForSeconds(enemies[i].moveTime);
+        }
+        playersTurn = true;
+        enemiesMoving=false;
     }
 }

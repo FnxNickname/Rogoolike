@@ -80,7 +80,7 @@ public class Player : MovingObject
     {
         Wall hitWall = component as Wall;
         hitWall.DamageWall(wallDamage);
-        animator.SetTrigger("playerChop");
+        animator.SetTrigger("playerAttack1");
     }
 
     private void Restart()
