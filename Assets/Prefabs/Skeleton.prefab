@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8846514238091842483}
   - component: {fileID: 2279308224749489222}
   - component: {fileID: 6794110674011503640}
+  - component: {fileID: 680943142776628750}
   m_Layer: 6
   m_Name: Skeleton
   m_TagString: Enemy
@@ -100,7 +101,7 @@ Animator:
   m_GameObject: {fileID: 8834202413132137446}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 9217ee4bc1bb4cd49973d672a4b81689, type: 2}
+  m_Controller: {fileID: 9100000, guid: d227cb18ee4fed24e9f602b72bc3fa2c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -185,3 +186,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.0001, y: 0.0001}
   m_EdgeRadius: 0
+--- !u!114 &680943142776628750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8834202413132137446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ce2641c9a19a974389b10a1675f8fdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveTime: 0.1
+  blockingLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  playerDamage: 20

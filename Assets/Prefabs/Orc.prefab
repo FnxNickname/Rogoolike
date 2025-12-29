@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2239825603257293786}
   - component: {fileID: 1637438308904907266}
   - component: {fileID: 6046454340797883523}
+  - component: {fileID: 1518019929991255660}
   m_Layer: 6
   m_Name: Orc
   m_TagString: Enemy
@@ -185,3 +186,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.0001, y: 0.0001}
   m_EdgeRadius: 0
+--- !u!114 &1518019929991255660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1608550379325264704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ce2641c9a19a974389b10a1675f8fdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveTime: 0.1
+  blockingLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  playerDamage: 10

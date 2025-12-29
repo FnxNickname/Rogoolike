@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6712286512919567126}
   - component: {fileID: 3834939143292660363}
   - component: {fileID: 8130785227727589618}
+  - component: {fileID: 3153135713282812278}
   m_Layer: 6
   m_Name: InnerWall2
   m_TagString: Untagged
@@ -134,3 +135,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3153135713282812278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7925559928191285632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23dace26762997e4e8fe0180144d2860, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dmgSprite: {fileID: 3740469535367672815, guid: 2c093c9c794c6974db60b1830397b939, type: 3}
+  hp: 4
