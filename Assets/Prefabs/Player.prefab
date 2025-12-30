@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7182434934320991962}
   - component: {fileID: 8917585141269388052}
   - component: {fileID: 5555867886055671488}
+  - component: {fileID: -1219407061043318063}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -156,7 +157,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.0001, y: 0.0001}
+  m_Size: {x: 0.9, y: 0.9}
   m_EdgeRadius: 0
 --- !u!50 &5555867886055671488
 Rigidbody2D:
@@ -185,3 +186,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-1219407061043318063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6137525919691416741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4674b321a406fe34e8510a44ddbc7c52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveTime: 0.1
+  blockingLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  wallDamage: 1
+  pointsPerFood: 10
+  pointsPerBeer: 20
+  restartLevelDelay: 1
+  foodText: {fileID: 0}

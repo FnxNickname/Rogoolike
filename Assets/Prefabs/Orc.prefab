@@ -101,7 +101,7 @@ Animator:
   m_GameObject: {fileID: 1608550379325264704}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 61b8211e951a00c4c92e8533c01e1cb8, type: 2}
+  m_Controller: {fileID: 22100000, guid: ba583e900c1f2564e90e41563c6d0367, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -184,7 +184,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.0001, y: 0.0001}
+  m_Size: {x: 0.1, y: 0.1}
   m_EdgeRadius: 0
 --- !u!114 &1518019929991255660
 MonoBehaviour:

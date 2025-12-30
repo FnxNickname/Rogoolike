@@ -45,6 +45,11 @@ public class BoardManager : MonoBehaviour
     
     void BoardSetup()
     {
+        if (boardHolder != null)
+        {
+            Destroy(boardHolder.gameObject);
+        }
+
         boardHolder = new GameObject("Board").transform;
         for(int i = -1; i < columns+1;i++)
         {
@@ -60,6 +65,12 @@ public class BoardManager : MonoBehaviour
             }
         }
     }
+
+    public void RemovePosition(Vector3 position)
+    {
+        gridPositions.Remove(position);
+    }
+
 
     Vector3 RandomPosition()
     {
@@ -80,25 +91,26 @@ public class BoardManager : MonoBehaviour
         }
     }
 
+
     public void SetupScene(int level)
     {
         BoardSetup();
         InitialiseList();
-        LayoutObjectAtRandom(wallTiles,wallCount.minimum, wallCount.maximum);
+        RemovePosition(new Vector3(1, 1, 0f));
+        LayoutObjectAtRandom(wallTiles, wallCount.minimum, wallCount.maximum);
         LayoutObjectAtRandom(foodTiles, foodCount.minimum, foodCount.maximum);
-        int enemyCount = (int)Mathf.Log(level, 2f);
+
+
+        int enemyCount = (level / 2) + 1;
+
         LayoutObjectAtRandom(enemyTiles, enemyCount, enemyCount);
         Instantiate(exit, new Vector3(columns - 1, rows - 1, 0F), Quaternion.identity);
-
-
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         

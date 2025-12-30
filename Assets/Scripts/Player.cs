@@ -1,22 +1,30 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 
-public class Player : MovingObject 
+
+public class Player : MovingObject
 {
     public int wallDamage = 1;
     public int pointsPerFood = 10;
-    public int pointsperBeer = 20;
+    public int pointsPerBeer = 20;
     public float restartLevelDelay = 1f;
+    public TextMeshProUGUI foodText;
 
-    private Animator animator;
+
+
+
+    
     private int food;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected override void Start()
     {
-        animator = GetComponent<Animator>();
+        
         food = gameManager.instance.playerFoodPoints;
+
+        foodText.text = "Food: " + food;
 
         base.Start();
 
@@ -27,21 +35,19 @@ public class Player : MovingObject
         gameManager.instance.playerFoodPoints = food;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        if (!gameManager.instance.playersTurn) return;
+        if (!gameManager.instance.playersTurn || isMoving)
+            return;
 
         int horizontal = 0;
         int vertical = 0;
 
-        horizontal = (int)Input.GetAxisRaw("Horizontal");
-        vertical = (int)Input.GetAxisRaw("Vertical");
-
-        if(horizontal !=0)
-        {
-            vertical = 0;
-        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow)) horizontal = -1;
+        else if (Input.GetKeyDown(KeyCode.RightArrow)) horizontal = 1;
+        else if (Input.GetKeyDown(KeyCode.UpArrow)) vertical = 1;
+        else if (Input.GetKeyDown(KeyCode.DownArrow)) vertical = -1;
 
         if (horizontal != 0 || vertical != 0)
         {
@@ -49,38 +55,65 @@ public class Player : MovingObject
         }
     }
 
-    protected override void AttemptMove <T> (int xDir, int yDir)
+
+
+    protected override void AttemptMove<T>(int xDir, int yDir)
     {
         food--;
-        base.AttemptMove <T> (xDir, yDir);
+        foodText.text = "Food: " + food;
+
+        base.AttemptMove<T>(xDir, yDir);
+
         CheckIfGameOver();
         gameManager.instance.playersTurn = false;
     }
 
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.tag=="Exit")
+        if (other.tag == "Exit")
         {
+            gameManager.instance.AdvanceLevel();
+
             Invoke("Restart", restartLevelDelay);
             enabled = false;
         }
-        else if(other.tag=="Food")
+        else if (other.tag == "Food")
         {
             food += pointsPerFood;
+            foodText.text = "+" + pointsPerFood + "Food: " + food;
             other.gameObject.SetActive(false);
         }
-        else if (other.tag=="Beer")
+        else if (other.tag == "Drink")
         {
-            food += pointsperBeer;
+            food += pointsPerBeer;
+            foodText.text = "+" + pointsPerBeer + "Food: " + food;
+
             other.gameObject.SetActive(false);
         }
     }
 
-    protected override void OnCantMove <T> (T component)
+    protected override void OnMoveComplete()
+    {
+        gameManager.instance.playersTurn = false;
+    }
+
+
+
+    protected override void OnCantMove<T>(T component)
     {
         Wall hitWall = component as Wall;
-        hitWall.DamageWall(wallDamage);
-        animator.SetTrigger("playerAttack1");
+
+        if (hitWall != null)
+        {
+            hitWall.DamageWall(wallDamage);
+            animator.SetTrigger("playerAttack1");
+        }
+
+        else
+        {
+            animator.SetTrigger("playerAttack1");
+        }
     }
 
     private void Restart()
@@ -91,16 +124,26 @@ public class Player : MovingObject
 
     public void LoseFood(int loss)
     {
-        animator.SetTrigger("playerHit");
-        food-=loss;
-        CheckIfGameOver() ;
+        animator.SetTrigger("playerHurt");
+        food -= loss;
+        foodText.text = "-" + loss + "Food: " + food;
+        CheckIfGameOver();
     }
+
 
     private void CheckIfGameOver()
     {
         if (food <= 0)
         {
-            gameManager.instance.GameOver();
+            animator.SetTrigger("playerDie");
+
+            gameManager.instance.StartGameOverSequence();
+
+            enabled = false;
         }
     }
+
+
+
+
 }
